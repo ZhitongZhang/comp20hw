@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>comp20 EC</title>
+
+</head>
+
+<body>
+    <form>
+        <input name="txt1" id ="txt1" type ="text">
+        <input id = "but" type ="button" value = "=>" onclick = "pressed()">
+        <input name="txt2" id= "txt2" type = "text">
+    </form>
+  <script language = "javascript">
+      function pressed()
+      {
+          var n;
+          var direction = document.getElementById("but").value;
+          var lorr;
+          if (direction == "=>")
+          {
+            n = document.getElementById("txt1").value;
+            lorr = 1;
+          }
+          else
+          {
+            lorr = 0;
+            n = document.getElementById("txt2").value;
+          }
+          if (n.match(/\S/))
+          {
+              if (lorr)
+              {
+                  document.getElementById("txt2").value = n;
+                  document.getElementById("but").value = "<=";
+                  document.getElementById("txt1").value = "";
+              }
+              else
+              {
+                  document.getElementById("txt1").value = n;
+                  document.getElementById("but").value = "=>";
+                  document.getElementById("txt2").value = "";
+
+              }
+          }
+        
+      }
+      
+  </script>
+</body>
+</html>

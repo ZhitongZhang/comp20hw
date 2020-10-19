@@ -1,0 +1,129 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Homework 6</title>
+
+</head>
+
+<body>
+    <form>
+        <input name="txt1" id ="txt1" type ="text">
+        <input name="txt2" id= "txt2" type = "text">
+        <input id = "but" type ="button" value = "=>" onclick = "pressed()">
+
+        <div id ="divID"></div>
+    </form>
+  <script language = "javascript">
+      function display(ele1 ,ele2)
+      {
+          document.getElementById("divID").innerHTML="<h1> computing for " + ele1 + ", " + ele2 + "</h1>";
+      }
+      function isFactor(num, factor)
+      {
+        if (num % factor)
+            return false;
+        return true;
+      }
+      function addArray(A)
+      {
+        var s = 0;
+        for (i = 0 ; i < A.length; i++)
+        {
+          s += A[i];
+        }
+
+        return s;
+      }
+      function getFactors(num)
+      {
+        A = []
+
+        for (i = 1 ; i <= num ; i++)
+        {
+          if (isFactor(num,i)){
+            A.push(i);
+          }
+        }
+        
+        return A;
+
+      }
+      function showArray(A)
+      {
+        var s = "";
+        for (i = 0 ; i < A.length ; i++)
+        {
+          s += String(A[i]);
+          s += ",";
+
+
+        }
+
+        s = s.slice(0,-1);
+
+        document.getElementById("divID").innerHTML += "<h2> Array: " + s + "</h2>";
+
+      }
+      function pressed()
+      {
+          var a = document.getElementById("txt1").value;
+          var b = document.getElementById("txt2").value;
+          display(a,b);
+
+          /*
+          Testing isFactor function 
+          alert(isFactor(100,10)); //expect true
+          alert(isFactor(49,4));  //expect false
+          alert(isFactor(1,2)); //expect fals
+          */
+
+          /*
+          Testing showArray function
+          var arr = [2,3,5,2,3];
+          showArray(arr);
+          */
+
+          /*
+          testing addArray function
+
+          var arr = [242,32,1,-4];
+          alert(addArray(arr)); // expects 271
+          */
+
+          /*
+          testing getFactors function
+          showArray(getFactors(3414)); // expects 1,2,3,6,569,1138,1707
+          */
+
+          
+
+          var a_arr = getFactors(a);
+          var b_arr = getFactors(b);
+
+
+          document.getElementById("divID").innerHTML += "<h2> ALL first input factors and sum excluding first input itself (" + a_arr[a_arr.length-1] + ")</h2>";
+          showArray(a_arr);
+          a_arr.pop();
+          var a_sum = addArray(a_arr);
+          document.getElementById("divID").innerHTML += "<h2> sum: " + a_sum + "</h2>"; 
+          document.getElementById("divID").innerHTML += "<h2> ALL second input factors and sum excluding second input itself(" + b_arr[b_arr.length-1] + ")</h2>";
+
+          showArray(b_arr);
+          b_arr.pop();
+          var b_sum = addArray(b_arr);
+          document.getElementById("divID").innerHTML += "<h2> sum: " + b_sum + "</h2>";
+
+          if (b_sum == a && a_sum == b){
+            document.getElementById("divID").innerHTML += "<h3> These numbers are Amicable! </h3>";
+          }
+          else{
+            document.getElementById("divID").innerHTML += "<h3> These numbers are not Amicable!</h3>"; 
+          }
+      }
+      
+  </script>
+</body>
+</html>
